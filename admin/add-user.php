@@ -4,38 +4,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
-<?php
 
-if(isset($_POST["save"])){
-
-    $fname = $_POST["fname"];
-    $lname = $_POST["lname"];
-    $user = $_POST["user"];
-    $password = $_POST["password"];
-    $role = $_POST["role"];
-
-    include "config.php";
-    $query1 = "SELECT * FROM `user` WHERE `username`='{$user}'";
-    $result = mysqli_query($conn,$query1);
-
-    if(mysqli_num_rows($result)>0){
-        echo "username already exist";
-    }
-    else{
-        $query = "INSERT INTO `user`( `first_name`, `last_name`, `username`, `password`, `role`) VALUES ('{$fname}','{$lname}','{$user}','{$password}','{$role}')";
-        mysqli_query($conn,$query);
-        header("location:http://localhost:82/kstore/admin/users.php");
-    }
-
-    
-
-
-   
-
-
-}
-
-?>
 <?php include "header.php"; ?>
 <div id="admin-content">
     <div class="container">
@@ -75,7 +44,41 @@ if(isset($_POST["save"])){
                 </form>
 
                 <!-- Form End-->
+           
             </div>
+            <?php
+if(isset($_POST["save"])){
+
+    $fname = $_POST["fname"];
+    $lname = $_POST["lname"];
+    $user = $_POST["user"];
+    $password = $_POST["password"];
+    $role = $_POST["role"];
+
+    include "config.php";
+    $query1 = "SELECT * FROM `user` WHERE `username`='{$user}'";
+    $result = mysqli_query($conn,$query1);
+
+    if(mysqli_num_rows($result)>0){
+
+        echo "username already exist";
+
+    }
+    else{
+        $query = "INSERT INTO `user`( `first_name`, `last_name`, `username`, `password`, `role`) VALUES ('{$fname}','{$lname}','{$user}','{$password}','{$role}')";
+        mysqli_query($conn,$query);
+        header("location:http://localhost:82/kstore/admin/users.php");
+    }
+
+    
+
+
+   
+
+
+}
+
+?>
         </div>
     </div>
 </div>

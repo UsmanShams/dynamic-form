@@ -45,7 +45,7 @@
                 
                 ?>
          
-                <form action="update-user.php" method="POST" autocomplete="off">
+                <form action="" method="POST" autocomplete="off">
                     <div class="form-group">
                         <label>First Name</label>
                         <input type="hidden" name="id" class="form-control" placeholder="First Name" value="<?php echo $rows["user_id"] ?>">
@@ -76,6 +76,41 @@
                 </form>
                 <!-- Form End-->
     <?php } ?>
+    <?php
+
+if(isset($_POST["save"])){
+
+    $fname = $_POST["fname"];
+    $lname = $_POST["lname"];
+    $user = $_POST["user"];
+    $password = $_POST["password"];
+    $role = $_POST["role"];
+    
+    include "config.php";
+    $query1 = "SELECT * FROM `user` WHERE `username`='{$user}'";
+    $result = mysqli_query($conn,$query1);
+    
+    if(mysqli_num_rows($result)>0){
+        
+        echo "username already exist";
+        
+    }
+    else{
+        $query = "UPDATE `user` SET `first_name`='{$fname}',`last_name`='{$lname}',`username`='{$user}',`role`='{$role}' WHERE `user_id`='{$id}'";
+        mysqli_query($conn,$query);
+        header("location:http://localhost:82/kstore/admin/users.php");
+    }
+    
+}
+    
+
+
+   
+
+
+
+
+?>
             </div>
         </div>
     </div>

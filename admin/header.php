@@ -1,3 +1,11 @@
+<?php
+
+include "config.php";
+session_start();
+if(!isset($_SESSION["username"])){
+   header("location:http://localhost:82/usman/dynamic-form/admin/index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -27,7 +35,8 @@
                     <!-- /LOGO -->
                       <!-- LOGO-Out -->
                     <div class="col-md-offset-9  col-md-1">
-                        <a href="logout.php" class="admin-logout" >logout</a>
+                        <a href="" class="admin-logout"><?php echo $_SESSION["username"] ?></a>
+                        <a href="logout.php" class="admin-logout">logout</a>
                     </div>
                     <!-- /LOGO-Out -->
                 </div>

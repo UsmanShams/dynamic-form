@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
    <head>
@@ -30,7 +31,37 @@
                             <input type="submit" name="login" class="btn btn-primary" value="login" />
                         </form>
                         <!-- /Form  End -->
+                        <?php
+                        if(isset($_POST["login"])){
+
+                            $user = $_POST["username"];
+                            $password = $_POST["password"];
+
+                            include "config.php";
+                            $query = "SELECT `username`,`first_name`,`role` FROM `user` WHERE `username`= '{$user}' AND `password` = '{$password}'";
+                            $result = mysqli_query($conn,$query);
+
+                            if(mysqli_num_rows($result)>0){
+                                while($rows = mysqli_fetch_assoc($result)){
+
+                                    session_start();
+                                    $_SESSION["username"] = $rows["username"];
+                                    $_SESSION["role"] = $rows["role"];
+                                    $_SESSION["first_name"] = $rows["first_name"];
+
+
+                                    header("location:http://localhost:82/usman/dynamic-form/admin/products.php");
+                                }
+                            }
+                            else{
+                                echo "username password incorrect";
+                            }
+
+                        }
+
+                        ?>
                     </div>
+                    
                 </div>
             </div>
         </div>
