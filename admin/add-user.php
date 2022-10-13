@@ -1,3 +1,36 @@
+            <?php
+if(isset($_POST["save"])){
+
+    $fname = $_POST["fname"];
+    $lname = $_POST["lname"];
+    $user = $_POST["user"];
+    $password = $_POST["password"];
+    $role = $_POST["role"];
+
+    include "config.php";
+    $query1 = "SELECT * FROM `user` WHERE `username`='{$user}'";
+    $result = mysqli_query($conn,$query1);
+
+    if(mysqli_num_rows($result)>0){
+
+        echo "username already exist";
+
+    }
+    else{
+        $query = "INSERT INTO `user`( `first_name`, `last_name`, `username`, `password`, `role`) VALUES ('{$fname}','{$lname}','{$user}','{$password}','{$role}')";
+        mysqli_query($conn,$query);
+        header("location:http://localhost:82/kstore/admin/users.php");
+    }
+
+    
+
+
+   
+
+
+}
+
+?>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -46,39 +79,6 @@
                 <!-- Form End-->
            
             </div>
-            <?php
-if(isset($_POST["save"])){
-
-    $fname = $_POST["fname"];
-    $lname = $_POST["lname"];
-    $user = $_POST["user"];
-    $password = $_POST["password"];
-    $role = $_POST["role"];
-
-    include "config.php";
-    $query1 = "SELECT * FROM `user` WHERE `username`='{$user}'";
-    $result = mysqli_query($conn,$query1);
-
-    if(mysqli_num_rows($result)>0){
-
-        echo "username already exist";
-
-    }
-    else{
-        $query = "INSERT INTO `user`( `first_name`, `last_name`, `username`, `password`, `role`) VALUES ('{$fname}','{$lname}','{$user}','{$password}','{$role}')";
-        mysqli_query($conn,$query);
-        header("location:http://localhost:82/kstore/admin/users.php");
-    }
-
-    
-
-
-   
-
-
-}
-
-?>
         </div>
     </div>
 </div>

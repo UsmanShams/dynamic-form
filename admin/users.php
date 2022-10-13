@@ -1,4 +1,10 @@
-<?php include "header.php"; ?>
+
+<?php include "header.php";
+ include "config.php";
+
+ if($_SESSION["role"]==="0"){
+    header("location:http://localhost:82/usman/dynamic-form/admin/products.php");
+ } ?>
   <div id="admin-content">
       <div class="container">
           <div class="row">

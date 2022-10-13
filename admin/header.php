@@ -5,6 +5,7 @@ session_start();
 if(!isset($_SESSION["username"])){
    header("location:http://localhost:82/usman/dynamic-form/admin/index.php");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +36,7 @@ if(!isset($_SESSION["username"])){
                     <!-- /LOGO -->
                       <!-- LOGO-Out -->
                     <div class="col-md-offset-9  col-md-1">
-                        <a href="" class="admin-logout"><?php echo $_SESSION["username"] ?></a>
+                        <a href="" class="admin-logout">Hello <?php echo $_SESSION["username"] ?></a>
                         <a href="logout.php" class="admin-logout">logout</a>
                     </div>
                     <!-- /LOGO-Out -->
@@ -52,12 +53,17 @@ if(!isset($_SESSION["username"])){
                             <li>
                                 <a href="products.php">Products</a>
                             </li>
+                            <?php
+                            if($_SESSION["role"] === "1"){
+
+                            ?>
                             <li>
                                 <a href="category.php">Category</a>
                             </li>
                             <li>
                                 <a href="users.php">Users</a>
                             </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
