@@ -45,13 +45,14 @@ if(isset($_SESSION["username"])){
                             $password = $_POST["password"];
 
                             include "config.php";
-                            $query = "SELECT `username`,`first_name`,`role` FROM `user` WHERE `username`= '{$user}' AND `password` = '{$password}'";
+                            $query = "SELECT `username`,`user_id`,`first_name`,`role` FROM `user` WHERE `username`= '{$user}' AND `password` = '{$password}'";
                             $result = mysqli_query($conn,$query);
 
                             if(mysqli_num_rows($result)>0){
                                 while($rows = mysqli_fetch_assoc($result)){
 
                                     session_start();
+                                    $_SESSION["user_id"] = $rows["user_id"];
                                     $_SESSION["username"] = $rows["username"];
                                     $_SESSION["role"] = $rows["role"];
                                     $_SESSION["first_name"] = $rows["first_name"];

@@ -9,92 +9,50 @@
               <div class="col-md-2">
                   <a class="add-new" href="add-products.php">add Products</a>
               </div>
+              <?php
+              include "config.php";
+              $query = "SELECT * FROM `post`
+              LEFT JOIN category ON post.category = category.category_id
+              LEFT JOIN user ON post.author = user.user_id
+              ORDER BY post_id DESC;
+              ";
+              $result = mysqli_query($conn,$query);
+              if(mysqli_num_rows($result)){
+
+              
+              ?>
               <div class="col-md-12">
                   <table class="content-table">
                       <thead>
                           <th>S.No.</th>
                           <th>Title</th>
                           <th>Category</th>
+                          <th>Description</th>
                           <th>Date</th>
                           <th>Author</th>
                           <th>Edit</th>
                           <th>Delete</th>
                       </thead>
+                      <?php
+                      while($rows = mysqli_fetch_assoc($result)){
+
+                      
+                      ?>
                       <tbody>
                           <tr>
-                              <td class='id'>1</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Electronics</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-products.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-products.php'><i class='fa fa-trash-o'></i></a></td>
+                              <td class='id'><?php echo $rows["post_id"] ?></td>
+                              <td><?php echo $rows["title"] ?></td>
+                              <td><?php echo $rows["category_name"] ?></td>
+                              <td><?php echo $rows["description"] ?></td>
+                              <td><?php echo $rows["post_date"] ?></td>
+                              <td><?php echo $rows["author"] ?></td>
+                              <td class='edit'><a href='update-products.php?id=<?php echo $rows["post_id"] ?>'><i class='fa fa-edit'></i></a></td>
+                              <td class='delete'><a href='delete-products.php?id=<?php echo $rows["post_id"] ?>'><i class='fa fa-trash-o'></i></a></td>
                           </tr>
-                          <tr>
-                              <td class='id'>2</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Mobiles</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-products.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-products.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>3</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>laptops</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-products.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-products.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>4</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Consoles</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-products.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-products.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>5</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>accessories</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-products.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-products.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>6</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>PCS</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-products.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-products.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>7</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>watches</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-products.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-products.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>8</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>tablets</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-products.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-products.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
+                      <?php } ?>
                       </tbody>
                   </table>
+              <?php  } ?>
                   <ul class='pagination admin-pagination'>
                       <li class="active"><a>1</a></li>
                       <li><a>2</a></li>
