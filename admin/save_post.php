@@ -45,6 +45,6 @@ include "config.php";
 $query .= "UPDATE category set post= post + 1 where category_id = '{$category}';";
 
 mysqli_multi_query($conn,$query);
-header("location:http://localhost:82/usman/dynamic-form/admin/products.php")
+header("location:http://localhost/dynamic-form/admin/products.php")
 
 ?>

@@ -2,6 +2,6 @@
 session_start();
 session_unset();
 session_destroy();
-header("location:http://localhost:82/usman/dynamic-form/admin/");
+header("location:http://localhost/dynamic-form/admin/index.php");
 
 ?>

@@ -3,7 +3,7 @@
 include "config.php";
 session_start();
 if(isset($_SESSION["username"])){
-   header("location:http://localhost:82/usman/dynamic-form/admin/users.php");
+   header("location:http://localhost/dynamic-form/admin/users.php");
 }
 ?>
 <!doctype html>
@@ -58,7 +58,7 @@ if(isset($_SESSION["username"])){
                                     $_SESSION["first_name"] = $rows["first_name"];
 
 
-                                    header("location:http://localhost:82/usman/dynamic-form/admin/products.php");
+                                    header("location:http://localhost/dynamic-form/admin/products.php");
                                 }
                             }
                             else{

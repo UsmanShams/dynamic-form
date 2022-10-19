@@ -13,7 +13,7 @@
               include "config.php";
               $query = "SELECT * FROM `post`
               LEFT JOIN category ON post.category = category.category_id
-              LEFT JOIN user ON post.author = user.user_id
+              LEFT JOIN user ON post.author = user.username
               ORDER BY post_id DESC;
               ";
               $result = mysqli_query($conn,$query);
@@ -45,7 +45,7 @@
                               <td><?php echo $rows["category_name"] ?></td>
                               <td><?php echo $rows["description"] ?></td>
                               <td><?php echo $rows["post_date"] ?></td>
-                              <td><?php echo $rows["author"] ?></td>
+                              <td><?php echo $rows["username"] ?></td>
                               <td class='edit'><a href='update-products.php?id=<?php echo $rows["post_id"] ?>'><i class='fa fa-edit'></i></a></td>
                               <td class='delete'><a href='delete-products.php?id=<?php echo $rows["post_id"] ?>'><i class='fa fa-trash-o'></i></a></td>
                           </tr>

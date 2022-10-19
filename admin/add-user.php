@@ -19,7 +19,7 @@ if(isset($_POST["save"])){
     else{
         $query = "INSERT INTO `user`( `first_name`, `last_name`, `username`, `password`, `role`) VALUES ('{$fname}','{$lname}','{$user}','{$password}','{$role}')";
         mysqli_query($conn,$query);
-        header("location:http://localhost:82/kstore/admin/users.php");
+        header("location:http://localhost/dynamic-form/admin/users.php ");
     }
 
     
